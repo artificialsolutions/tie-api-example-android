@@ -1,0 +1,7 @@
+local.properties
+*.iml
+.gradle
+.idea
+gradle/wrapper
+ExampleUnitTest.java
+ExampleInstrumentedTest.java
