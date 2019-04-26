@@ -38,10 +38,14 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     final String defaultClientColor="#2f286e";
     final String defaultEngineColor="#ff4c5b";
-
-    private final String baseUrl = fill_in_base url_before_use;
+/*
+    private final String baseUrl = "fill_in_base url_before_use;
     private final String solutionEndpoint = fill_in_endpoint_url_before_use;
+//*/
 
+    private final String baseUrl = "https://skynet-4fe77f.bots.teneo.ai";
+    private final String solutionEndpoint = "/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/";
+//*/
 
     //ACTIVITY METHODS
     @Override
@@ -77,6 +81,7 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
         ttsIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(ttsIntent, ACT_CHECK_TTS_DATA);
 
+        //send an empty user input to trigger a greeting from Teneo Engine.
         sendInputToTiE("",null); //null=no params
     }
 

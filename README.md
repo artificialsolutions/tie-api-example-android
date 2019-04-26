@@ -8,7 +8,7 @@ This sample project consists a basic Chat app that showcases the capabilities of
    - A message adapter that handles tasks related to the Chat UI.
 
 
-##Prerequisites
+## Prerequisites
    - You need to know the engine url of a published bot.
    - Android 7 Nougat (API 25) device, or better. (Recommended)
 
@@ -17,7 +17,7 @@ This sample project consists a basic Chat app that showcases the capabilities of
     - Set [baseUrl] and [solutionEndpoint] variables to point at your solution's address, and run the app.
 
 
-## API Documentation
+## Project elements Documentation
 ### TIE SDK connectivity.
 This dependency in the **app.gradle** file enables the app to use the TIE SDK and communicate with Teneo Engine:
 ```
@@ -47,97 +47,3 @@ In the project, user input from the ASR or the keyboard are posted into the chat
 addMessageToChatWindow(String messageText, String color, boolean isUser)
 ```
 Likewise, messages incoming from engine are also posted to the Chat Window.
-
-
-
-
-### Example usage
-Messages are sent to the engine by calling sendInput on the TieApiService singleton:
-``` java
-TieApiService.getSharedInstance().sendInput(text, parameters)
-	.subscribeOn(Schedulers.io())
-	.observeOn(AndroidSchedulers.mainThread())
-	.subscribeWith(new DisposableSingleObserver<TieResponse>() {
-	    @Override
-	    public void onSuccess(TieResponse result) {
-	        // Do something with the result
-	    }
-	    @Override
-	    public void onError(Throwable e) {
-	        // Do something with the exception
-	    }
-	});
-```
-
-## Installation
-You can add the library to your project through jCenter. Make sure to reference the jcenter repository, and then add the dependency
-com.artificialsolutions.tie-sdk-android:tie-sdk-android:1.0.2
-Using the library also requires rxjava2.
-
-build.gradle example:
-```
-buildscript {
-    repositories {
-        jcenter()
-    }
-}
-
-dependencies {
-    implementation 'com.artificialsolutions.tie-sdk-android:tie-sdk-android:1.0.2'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-}
-```
-
-## API Documentation
-### TieApiService.setup
-Before usage, setup needs to be called once with context, base url, and endpoint.
-
-``` java
-TieApiService.getSharedInstance().setup(getApplicationContext(), teneoEngineBaseUrl, endpoint);
-```
-
-### TieApiService.input
-Communication with Teneo Interaction Engine is done with sendInput function, that
-returns an observable that produces either a TieResponse object with onSuccess or a Throwable on onError.
-
-``` java
-TieApiService.getSharedInstance().sendInput(userInput, parameters)
-```
-
-**Parameters:**
-*userInput* : String
-The input string that is sent to the engine.
-
-*parameters* : HashMap<String, String>
-Any engine instance specific parameters. The following keywords are reserved: *viewtype* and *userinput*.
-
-**Response:**
-On success a **TieResponse** object is returned.
-- input: TieInput
-    - text: String
-    - parameters: HashMap<String, String>
-- output: TieOutput
-    - text: String
-    - parameters: HashMap<String, String>
-    - link: String
-    - emotion: String
-- status: String
-
-On fail the call returns a Throwable. The exception can be **JsonParseException**, **IOException**, **NotInitializedException** when setup has not been called, or **TieApiException** when the engine responds with an error.
-TieApiException:
-- error: TieErrorResponse
-    - status: String
-    - input: TieInput
-        - text: String
-        - parameters: HashMap<String, String>
-    - message: String
-
-### TieApiService.close
-The sdk maintains the session until it is expired by the server, in which case the session is renewed automatically, or until it is closed by calling the close function.
-
-``` java
-TieApiService.getSharedInstance().close();
-```
-
-### Error handling
-Server-sent error messages are returned with sendInput ja close functions as TieApiException objects.
