@@ -12,7 +12,7 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 
 ## Installation
    - Clone the repository.
-   - Set [baseUrl] and [solutionEndpoint] variables to point at your solution's address, and run the app.
+   - Set [baseUrl] and [solutionEndpoint] variables in the ChatActivity.java class, to point at your solution's address, and        run the app.
 
 
 ## Project elements Documentation
