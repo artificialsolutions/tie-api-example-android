@@ -1,7 +1,5 @@
-# tie-api-client-android
-This library provides a way of communicating with a Teneo Engine server instance.
-
-This sample project consists a basic Chat app that showcases the capabilities of the TIE SDK beyond essential conenctivity, working in conjunction with 3rd party ASR, TTS and UI elements. Concretely:
+# tie-api-example-android
+This sample project shows the capabilities of the TIE SDK, working in conjunction with 3rd party ASR, TTS and UI elements, as the form of a Chat app. These are the 4 combined aspects of the app that are described ahead:
    - TIE SDK connectivity.
    - Google ASR implementation and a typical Textbox bar to capture user input. 
    - Text to Speech (TTS) capability to speak bot replies out loud.
@@ -13,8 +11,8 @@ This sample project consists a basic Chat app that showcases the capabilities of
    - Android 7 Nougat (API 25) device, or better. (Recommended)
 
 ## Installation
-    - Clone the repository.
-    - Set [baseUrl] and [solutionEndpoint] variables to point at your solution's address, and run the app.
+   - Clone the repository.
+   - Set [baseUrl] and [solutionEndpoint] variables to point at your solution's address, and run the app.
 
 
 ## Project elements Documentation
