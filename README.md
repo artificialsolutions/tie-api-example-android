@@ -27,10 +27,10 @@ Within this app, a text can be sent to Teneo Engine anytime, with this helper me
 ```
 sendInputToTiE(String text, HashMap<String, String> params)
 ```
-This project follows TIE SDK connectivity guidelines which are fully detailed in[tie-api-example-android](https://github.com/artificialsolutions/tie-api-example-android) example.
+This project follows TIE SDK connectivity guidelines which are fully detailed in [```tie-api-example-android```](https://github.com/artificialsolutions/tie-api-example-android) example.
 
 ### Speech Recognition (ASR)
-This project implements Google's Android native ASR with [***RecognizerIntent***](https://developer.android.com/reference/android/speech/RecognizerIntent).
+This project implements Google's Android native ASR with [```RecognizerIntent```](https://developer.android.com/reference/android/speech/RecognizerIntent).
 The method ```launchGoogleVoice``` initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in ```activity_chat.xml``` It also stops any TTS playback before launching ASR.
 Final ASR results are received at the ```onActivity``` callback, sent to Engine as text with:
 ```consumeASRresults(int resultCode, Intent data)```
