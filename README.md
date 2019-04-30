@@ -12,7 +12,7 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 
 ## Installation
    - Clone the repository.
-   - Set ```baseUrl``` and ```solutionEndpoint``` variables in the ChatActivity.java class, to point at your solution's address, and        run the app.
+   - Set ```baseUrl``` and ```solutionEndpoint``` variables in the ```ChatActivity.java class```, to point at your solution's address, and        run the app.
 
 
 ## Project elements Documentation
@@ -33,6 +33,7 @@ This project follows TIE SDK connectivity guidelines which are fully detailed in
 This project implements Google's Android native ASR with [```RecognizerIntent```](https://developer.android.com/reference/android/speech/RecognizerIntent).
 The method ```launchGoogleVoice``` initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in ```activity_chat.xml``` It also stops any TTS playback before launching ASR.
 Final ASR results are received at the ```onActivity``` callback, sent to Engine as text with:
+
 ```consumeASRresults(int resultCode, Intent data)```
 
 ### TTS
