@@ -12,16 +12,16 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 
 ## Installation
    - Clone the repository.
-   - Set [baseUrl] and [solutionEndpoint] variables in the ChatActivity.java class, to point at your solution's address, and        run the app.
+   - Set ```baseUrl``` and ```solutionEndpoint``` variables in the ChatActivity.java class, to point at your solution's address, and        run the app.
 
 
 ## Project elements Documentation
 ### TIE SDK connectivity.
-This dependency in the **app.gradle** file enables the app to use the TIE SDK and communicate with Teneo Engine:
+This dependency in the ```app.gradle``` file enables the app to use the TIE SDK and communicate with Teneo Engine:
 ```
 implementation 'com.artificialsolutions.tie-sdk-android:tie-sdk-android:1.x.x'
 ```
-The ***onCreate*** method of the app initializes, among other things, the ***TieApiService***.
+The ```onCreate``` method of the app initializes, among other things, the ```TieApiService```
 
 Within this app, a text can be sent to Teneo Engine anytime, with this helper method:
 ```
@@ -31,15 +31,16 @@ This project follows TIE SDK connectivity guidelines which are fully detailed in
 
 ### Speech Recognition (ASR)
 This project implements Google's Android native ASR with [***RecognizerIntent***](https://developer.android.com/reference/android/speech/RecognizerIntent).
-The method ***launchGoogleVoice*** initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in ***activity_chat.xml***. It also stops any TTS playback before launching ASR.
-Final ASR results are received at the ***onActivity*** callback, sent to Engine as text with ***consumeASRresults(int resultCode, Intent data)***
+The method ```launchGoogleVoice``` initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in ```activity_chat.xml``` It also stops any TTS playback before launching ASR.
+Final ASR results are received at the ```onActivity``` callback, sent to Engine as text with:
+```consumeASRresults(int resultCode, Intent data)```
 
 ### TTS
-TTS is implemented with Android's native [TTS](https://developer.android.com/reference/android/speech/tts/TextToSpeech). The object ***googleTextToSpeech***, within the project is the center of voice synthesis, and is initialized, launched and released throughout the lifecycle.
-In this project, the method ***saySomething(String text)***  speaks out loud the bot responses received from Teneo Engine.
+TTS is implemented with Android's native [TTS](https://developer.android.com/reference/android/speech/tts/TextToSpeech). The object ```googleTextToSpeech``` within the project is the center of voice synthesis, and is initialized, launched and released throughout the lifecycle.
+In this project, the method ```saySomething(String text)```  speaks out loud the bot responses received from Teneo Engine.
 
 ### Chat UI
-Chat UI is implemented in the ***MesageAdapter*** class. You may customize message bubble color, avatar, and sender in that class, if you wish. 
+Chat UI is implemented in the ```MesageAdapter``` class. You may customize message bubble color, avatar, and sender in that class, if you wish. 
 In the project, user input from the ASR or the keyboard are posted into the chat window with:
 ```
 addMessageToChatWindow(String messageText, String color, boolean isUser)
