@@ -8,6 +8,7 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 
 ## Prerequisites
    - You need to know the engine url of a published bot.
+   - Android Studio 3.4 or later.
    - Android 7 Nougat (API 25) device, or better. (Recommended)
 
 ## Installation
@@ -35,10 +36,12 @@ The method ```launchGoogleVoice``` initializes RecognizerIntent with parameters 
 Final ASR results are received at the ```onActivity``` callback, sent to Engine as text with:
 
 ```consumeASRresults(int resultCode, Intent data)```
+Localized ASR language is customizable, for example, in this project, ASR language is set to UK English with: ``asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_GB")```
 
 ### TTS
 TTS is implemented with Android's native [TTS](https://developer.android.com/reference/android/speech/tts/TextToSpeech). The object ```googleTextToSpeech``` within the project is the center of voice synthesis, and is initialized, launched and released throughout the lifecycle.
 In this project, the method ```saySomething(String text)```  speaks out loud the bot responses received from Teneo Engine.
+Localized TTS language is customizable. In this project, for example, TTS language is set to UK English with: ```googleTextToSpeech.setLanguage(Locale.UK);```
 
 ### Chat UI
 Chat UI is implemented in the ```MesageAdapter``` class. You may customize message bubble color, avatar, and sender in that class, if you wish. 
