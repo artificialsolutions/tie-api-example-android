@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,7 +22,6 @@ import java.util.HashMap;
 import java.util.Locale;
 import com.artificialsolutions.tiesdk.TieApiService;
 import com.artificialsolutions.tiesdk.model.TieResponse;
-import com.google.gson.Gson;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -38,14 +36,10 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     final String defaultClientColor="#2f286e";
     final String defaultEngineColor="#ff4c5b";
-/*
-    private final String baseUrl = "fill_in_base url_before_use;
-    private final String solutionEndpoint = fill_in_endpoint_url_before_use;
-//*/
 
-    private final String baseUrl = "https://skynet-4fe77f.bots.teneo.ai";
-    private final String solutionEndpoint = "/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/";
-//*/
+    final String baseUrl = "fill_in_base url_before_use";
+    final String solutionEndpoint = "fill_in_endpoint_url_before_use";
+
 
     //ACTIVITY METHODS
     @Override
@@ -53,7 +47,7 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        userInputBox = (EditText) findViewById(R.id.userInputBox);
+        userInputBox = findViewById(R.id.userInputBox);
         userInputBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -68,7 +62,8 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         });
 
-        messagesView = (ListView) findViewById(R.id.messages_view);
+
+        messagesView = findViewById(R.id.messages_view);
         messageAdapter=new MessageAdapter(this);
         messagesView.setAdapter(messageAdapter);
 
@@ -107,7 +102,7 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
             if (googleTextToSpeech != null) {
-                int result = googleTextToSpeech.setLanguage(Locale.US);
+                int result = googleTextToSpeech.setLanguage(Locale.UK);
                 if (result == TextToSpeech.LANG_MISSING_DATA ||
                         result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Toast.makeText(this, "TTS language is not supported", Toast.LENGTH_LONG).show();
@@ -167,7 +162,7 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
         hideSoftKeyboard(userInputBox);
         Intent asrIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM); //Specify language model that listens fluently
-        asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US"); //Use a different language, other than the phone's default language
+        asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_GB"); //Use a different language, other than the phone's default language
         asrIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1); //Asking for fewer results can improve performance
         asrIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getApplicationContext().getPackageName()); //Prevents interference when other apps are using ASR simultaneously
         asrIntent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Listening..."); //A label for the Android ASR popup

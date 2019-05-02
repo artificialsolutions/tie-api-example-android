@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ChatActivity"
-            android:label="Artificial Solutions"
+            android:label="Teneo Chat App"
             >
             <!--android:theme="@style/AppTheme.NoActionBar" -->
             <intent-filter>
