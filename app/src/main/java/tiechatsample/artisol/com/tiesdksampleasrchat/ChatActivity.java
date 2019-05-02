@@ -37,8 +37,8 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     final String defaultClientColor="#2f286e";
     final String defaultEngineColor="#ff4c5b";
 
-    final String baseUrl = "fill_in_base url_before_use";
-    final String solutionEndpoint = "fill_in_endpoint_url_before_use";
+    private final String baseUrl = fill_in_base url_before_use;
+    private final String solutionEndpoint = fill_in_endpoint_url_before_use;
 
 
     //ACTIVITY METHODS
