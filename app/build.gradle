@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 27
     defaultConfig {
         applicationId "tiechatsample.artisol.com.tiesdksampleasrchat"
@@ -14,6 +15,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+           // signingConfig signingConfigs.release
         }
     }
 }
