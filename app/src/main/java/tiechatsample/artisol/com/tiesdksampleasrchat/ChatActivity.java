@@ -37,8 +37,10 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     final String defaultClientColor="#2f286e";
     final String defaultEngineColor="#ff4c5b";
 
-    private final String baseUrl = fill_in_base url_before_use;
-    private final String solutionEndpoint = fill_in_endpoint_url_before_use;
+    //final String baseUrl = fill_in_base url_before_use;
+    //final String solutionEndpoint = fill_in_endpoint_url_before_use;
+     final String baseUrl = "https://skynet-4fe77f.bots.teneo.ai";
+     final String solutionEndpoint = "/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/";
 
 
     //ACTIVITY METHODS
@@ -91,13 +93,9 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private final int ACT_CHECK_TTS_DATA = 1000;
 
     private void saySomething(String text) {
-        //Use non-deprecated 'Speak' on Android Lollipop devices and newer.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            googleTextToSpeech.speak(text,TextToSpeech.QUEUE_ADD,null,null);
-        } else {
-            googleTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        googleTextToSpeech.speak(text,TextToSpeech.QUEUE_ADD,null,null);
     }
+
     //INITIALIZE TTS
     public void onInit(int status) {
         if (status == TextToSpeech.SUCCESS) {
@@ -241,7 +239,9 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     //Hides Android Keyboard
     private void hideSoftKeyboard(EditText t) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(t.getWindowToken(), 0);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(t.getWindowToken(), 0);
+        }
         t.clearFocus();
     }
 
