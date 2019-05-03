@@ -9,7 +9,7 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 ## Prerequisites
    - You need to know the engine url of a published bot.
    - Android Studio 3.4 or later.
-   - Android 7 Nougat (API 25) device, or better. (Recommended)
+   - Android 6 Marshmallow (API 23) device, or better. (Recommended)
 
 ## Installation
    - Clone the repository.
