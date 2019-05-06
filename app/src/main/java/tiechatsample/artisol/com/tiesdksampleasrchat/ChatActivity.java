@@ -36,11 +36,8 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     final String defaultClientColor="#2f286e";
     final String defaultEngineColor="#ff4c5b";
 
-    //final String baseUrl = fill_in_base url_before_use;
-    //final String solutionEndpoint = fill_in_endpoint_url_before_use;
-     final String baseUrl = "https://skynet-4fe77f.bots.teneo.ai";
-     final String solutionEndpoint = "/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/";
-
+    final String baseUrl = "fill_in_base url_before_use";
+    final String solutionEndpoint = "fill_in_endpoint_url_before_use";
 
     //ACTIVITY METHODS
     @Override
