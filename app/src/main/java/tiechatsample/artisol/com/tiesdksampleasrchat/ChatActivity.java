@@ -73,9 +73,6 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
         Intent ttsIntent = new Intent();
         ttsIntent.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
         startActivityForResult(ttsIntent, ACT_CHECK_TTS_DATA);
-
-        //send an empty user input to trigger a greeting from Teneo Engine.
-        sendInputToTiE("",null); //null=no params
     }
 
     @Override
@@ -89,11 +86,15 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private final int ACT_CHECK_TTS_DATA = 1000;
 
     private void saySomething(String text) {
-        googleTextToSpeech.speak(text,TextToSpeech.QUEUE_ADD,null,null);
+        if(text!=null) {
+            googleTextToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, null);
+        }
     }
 
     //INITIALIZE TTS
     public void onInit(int status) {
+        //Now that the outcome of TTS.onInit is known, send an empty user input to trigger a greeting from Teneo Engine.
+        sendInputToTiE("",null); //null=no params
         if (status == TextToSpeech.SUCCESS) {
             if (googleTextToSpeech != null) {
                 int result = googleTextToSpeech.setLanguage(Locale.UK);
@@ -190,28 +191,36 @@ public class ChatActivity extends AppCompatActivity implements TextToSpeech.OnIn
             parameters=params;
         }
 
-        TieApiService.getSharedInstance().sendInput(text, parameters)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<TieResponse>() {
-                    @Override
-                    public void onSuccess(TieResponse result) {
-                        userInputBox.setText("");
-                        consumeEngineResponseResult(result);
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-                        consumeEngineError(e);
-                    }
-                });
+        try {
+            TieApiService.getSharedInstance().sendInput(text, parameters)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableSingleObserver<TieResponse>() {
+                        @Override
+                        public void onSuccess(TieResponse result) {
+                            userInputBox.setText("");
+                            consumeEngineResponseResult(result);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            consumeEngineError(e);
+                        }
+                    });
+        }
+        catch(IllegalArgumentException e){
+            addMessageToChatWindow("ERROR: "+e.getMessage(),defaultEngineColor,false);
+        }
     }
 
     //SENDS ENGINE RESULTS TO UI AND Text To Speech
     private void consumeEngineResponseResult(TieResponse result){
+
+        String tieReply = result.getOutput().getText();
         //Display the result in the chat window
-        addMessageToChatWindow(result.getOutput().getText(),defaultEngineColor,false);
+        addMessageToChatWindow(tieReply,defaultEngineColor,false);
         //Speak the result out loud with TTS
-        saySomething(result.getOutput().getText());
+        saySomething(tieReply);
     }
 
     public void consumeEngineError(Throwable e){ //for both sendInput and closeSession
