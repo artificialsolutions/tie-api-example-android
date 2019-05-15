@@ -7,7 +7,7 @@ This project is an example Android chat app for Teneo. The project demonstrates 
 
 
 ## Prerequisites
-- You need to know the engine url of a published bot.
+- You need to know the Teneo engine url of a published bot.
 - Android Studio 3.4 or later.
 - Android 6 Marshmallow (API 23) device, or better. (Recommended)
 
