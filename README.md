@@ -1,4 +1,4 @@
-# tie-api-example-android
+# Example Android chat app for Teneo
 This sample project shows the capabilities of the TIE SDK, working in conjunction with 3rd party ASR, TTS and UI elements, as the form of a Chat app. These are the 4 combined aspects of the app that are described ahead:
    - TIE SDK connectivity.
    - Google ASR implementation and a typical Textbox bar to capture user input. 
