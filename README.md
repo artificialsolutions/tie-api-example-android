@@ -13,7 +13,7 @@ This sample project shows the capabilities of the TIE SDK, working in conjunctio
 
 ## Installation
    - Clone the repository.
-   - Point the app at your bot's Teneo engine by setting the following variables in the <mark>ChatActivity.java</mark> class:
+   - Point the app at your bot's Teneo engine by setting the following variables in the `ChatActivity.java` class:
       - `baseUrl`, the base url of your engine, for example `https://myteam-4fe77f.bots.teneo.ai`
       - `solutionEndpoint`, the path or endpoint of your engine, like `/longberry_baristas_0x383bjp5a8e6tscbjd9x03tvb/` **Note: make sure it ends with a slash (/)**
 
