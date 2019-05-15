@@ -1,9 +1,9 @@
 # Example Android chat app for Teneo
-This sample project shows the capabilities of the TIE SDK, working in conjunction with 3rd party ASR, TTS and UI elements, as the form of a Chat app. These are the 4 combined aspects of the app that are described ahead:
-- TIE SDK connectivity.
-- Google ASR implementation and a typical Textbox bar to capture user input. 
-- Text to Speech (TTS) capability to speak bot replies out loud.
+This project is an example Android chat app for Teneo. The project demonstrates the following concepts:
+- Text input using Google Speech Recognition as well as manual text entry.
+- Spoken responses using Google Text to Speech (TTS).
 - A message adapter that handles tasks related to the Chat UI.
+- Usage of the TIE SDK to interact with the Teneo engine.
 
 
 ## Prerequisites
