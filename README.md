@@ -32,15 +32,15 @@ sendInputToTiE(String text, HashMap<String, String> params)
 ```
 This project follows TIE SDK connectivity guidelines which are fully detailed in [tie-api-example-android](https://github.com/artificialsolutions/tie-api-example-android) example.
 
-### Speech Recognition (ASR)
-This project implements Google's Android native ASR with [RecognizerIntent](https://developer.android.com/reference/android/speech/RecognizerIntent).
-The method `launchGoogleVoice` initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in `activity_chat.xml` It also stops any TTS playback before launching ASR.
-Final ASR results are received at the `onActivity` callback, sent to Engine as text with `consumeASRresults(int resultCode, Intent data)`
+### Speech Recognition 
+This project implements Google's Android native Speech Recognition (ASR) with [RecognizerIntent](https://developer.android.com/reference/android/speech/RecognizerIntent).
+The method `launchGoogleVoice` initializes RecognizerIntent with parameters such as Language, number of results, confidence scores, and is called from the microphone button's XML code in `activity_chat.xml` It also stops any Text to Speech playback before launching Speech Recognition.
+Final Speech Recognition results are received at the `onActivity` callback, sent to Engine as text with `consumeASRresults(int resultCode, Intent data)`
 
-Localized ASR language is customizable, for example, in this project, ASR language is set to UK English with `asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_GB")`.
+The recognition language is customizable, for example, in this project, ASR language is set to UK English with `asrIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en_GB")`.
 
-### TTS
-TTS is implemented with Android's native [TTS](https://developer.android.com/reference/android/speech/tts/TextToSpeech). The object `googleTextToSpeech` within the project is the center of voice synthesis, and is initialized, launched and released throughout the lifecycle.
+### Text to Speech
+Text to Speech (TTS) is implemented with Android's native [Text to Speech](https://developer.android.com/reference/android/speech/tts/TextToSpeech). The object `googleTextToSpeech` within the project is the center of voice synthesis, and is initialized, launched and released throughout the lifecycle.
 In this project, the method `saySomething(String text)` speaks out loud the bot responses received from Teneo Engine.
 Localized TTS language is customizable. In this project, for example, TTS language is set to UK English with `googleTextToSpeech.setLanguage(Locale.UK)`.
 
