@@ -1,4 +1,9 @@
 # Example Android chat app for Teneo
+
+> [!IMPORTANT]
+> This project has been retired and archived  
+> If there is a need of continued use / development of this project for your own needs please feel free to fork the project - which will remain here in archived form.
+
 This project is an example Android chat app for Teneo. The project demonstrates the following concepts:
 - Text input using Google Speech Recognition as well as manual text entry.
 - Spoken responses using Google Text to Speech (TTS).
